@@ -17,7 +17,13 @@
       }
     ],
     "authorizer": {
-      "handler": "allow"
+      "handler": "keto_engine_acp_ory",
+      "config": {
+        "required_action": "check",
+        "required_resource": "/test",
+        "subject": "{{ print .Extra.client_id }}",
+        "flavor": "exact"
+      }
     },
     "mutators": [
       {

@@ -20,8 +20,16 @@ authenticators:
         ttl: 60s
 
 authorizers:
-  allow:
+  keto_engine_acp_ory:
     enabled: true
+    config:
+      base_url: http://localhost:4466
+      required_action: "check" # Adjust the required action as needed for your case
+      required_resource: "/test" # TODO: Pick Dynamically
+      subject: "{{ print .Extra.client_id }}" # Send client_id as the subject
+#      relation_tuples: []
+#      flavor: "exact"
+
 mutators:
   noop:
     enabled: true
