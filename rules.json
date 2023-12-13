@@ -3,7 +3,7 @@
   "id": "allow-anonymous-with-header-mutator",
   "version": "v0.40.2",
   "upstream": {
-    "url": "http://127.0.0.1:3334"
+    "url": "http://host.docker.internal:3334"
   },
   "match": {
     "url": "http://<127.0.0.1|localhost>:4455/test",

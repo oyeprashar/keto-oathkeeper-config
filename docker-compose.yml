@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  oathkeeper-service:
+    build:
+      dockerfile: ./DockerFile
+    expose:
+      - "4456"
+      - "4455"
+      - "9000"
+    ports:
+      - "4456:4456"
+      - "4455:4455"
+      - "9000:9000"
+    command: ["serve", "proxy", "--config", "/etc/oathkeeper/config.yaml"]
+    volumes:
+      - ./config.yaml:/etc/oathkeeper/config.yaml
+      - ./rules.json:/etc/oathkeeper/rules.json
+
+networks:
+  finboxnet:
+    driver: bridge
