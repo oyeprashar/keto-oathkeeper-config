@@ -1,6 +1,6 @@
 [
   {
-    "id": "allow-anonymous-with-header-mutator",
+    "id": "test-rule-1",
     "version": "v0.40.2",
     "upstream": {
       "url": "http://host.docker.internal:3334"
@@ -13,7 +13,7 @@
     },
     "authenticators": [
       {
-        "handler": "anonymous"
+        "handler": "oauth2_introspection"
       }
     ],
     "authorizer": {
@@ -24,7 +24,9 @@
         "handler": "header",
         "config": {
           "headers": {
-            "X-User": "{{ print .Subject }}"
+            "X-Client-ID": "{{ print .Extra.client_id }}",
+            "X-User": "",
+            "Authorization": ""
           }
         }
       }
