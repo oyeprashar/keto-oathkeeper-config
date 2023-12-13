@@ -1,0 +1,27 @@
+serve:
+#  api:
+#    port: 4459
+#  proxy:
+#    port: 4460
+access_rules:
+  repositories:
+    - file:///etc/oathkeeper/rules.json
+authenticators:
+  anonymous:
+    enabled: true
+authorizers:
+  allow:
+    enabled: true
+mutators:
+  noop:
+    enabled: true
+  header:
+    # Set enabled to true if the authenticator should be enabled and false to disable the authenticator. Defaults to false.
+    enabled: true
+    config:
+      headers:
+        X-User: "{{ print .Subject }}"
+log:
+  level: debug
+#  pretty: true # Enable pretty printing for logs (optional)
+  format: text # Log format (optional)

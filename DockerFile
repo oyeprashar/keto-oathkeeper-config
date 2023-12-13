@@ -1,0 +1,15 @@
+
+# Use a base image
+FROM oryd/oathkeeper:v0.38.11
+
+# Copy configuration files to the container
+COPY config.yaml /etc/oathkeeper/config.yaml
+COPY rules.json /etc/oathkeeper/rules.json
+
+# Expose required ports
+EXPOSE 4456
+EXPOSE 4455
+EXPOSE 9000
+
+# Command to start the Oathkeeper service
+CMD ["serve", "proxy", "--config", "/etc/oathkeeper/config.yaml"]
