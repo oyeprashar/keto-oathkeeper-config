@@ -20,7 +20,7 @@
     "authorizer": {
       "handler": "remote_json",
       "config": {
-        "remote" : "http://host.docker.internal:4466/relation-tuples/check?namespace=videos&object=/logs&relation=view&subject_id=c6397b7e-770d-48a5-9580-7af23fc152dc"
+        "remote" : "http://host.docker.internal:4466/relation-tuples/check"
       }
     },
     "mutators": [
