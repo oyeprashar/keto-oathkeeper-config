@@ -20,16 +20,18 @@ authenticators:
         ttl: 60s
 
 authorizers:
-  keto_engine_acp_ory:
+  remote_json:
+    # Set enabled to "true" to enable the authenticator, and "false" to disable the authenticator. Defaults to "false".
     enabled: true
     config:
-      base_url: http://localhost:4466
-      required_action: "check" # Adjust the required action as needed for your case
-      required_resource: "/test" # TODO: Pick Dynamically
-      subject: "{{ print .Extra.client_id }}" # Send client_id as the subject
-#      relation_tuples: []
-#      flavor: "exact"
-
+      remote: http://host.docker.internal:4466/relation-tuples/check
+      payload: |
+        {
+          "namespace" : "videos",
+          "object" : "/logs",
+          "relation" : "view",
+          "subject_id": "c6397b7e-770d-48a5-9580-7af23fc152dc"
+        }
 mutators:
   noop:
     enabled: true

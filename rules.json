@@ -16,13 +16,11 @@
         "handler": "oauth2_introspection"
       }
     ],
+
     "authorizer": {
-      "handler": "keto_engine_acp_ory",
+      "handler": "remote_json",
       "config": {
-        "required_action": "check",
-        "required_resource": "/test",
-        "subject": "{{ print .Extra.client_id }}",
-        "flavor": "exact"
+        "remote" : "http://host.docker.internal:4466/relation-tuples/check?namespace=videos&object=/logs&relation=view&subject_id=c6397b7e-770d-48a5-9580-7af23fc152dc"
       }
     },
     "mutators": [
