@@ -6,7 +6,7 @@
       "url": "http://host.docker.internal:3334"
     },
     "match": {
-      "url": "http://<127.0.0.1|localhost>:4455/<.*>",
+      "url": "http://<127.0.0.1|localhost>:4455/<test>",
       "methods": [
         "GET"
       ]
@@ -20,7 +20,7 @@
       "handler": "remote_json",
       "config": {
         "remote" : "http://host.docker.internal:4466/relation-tuples/check",
-        "payload": "{\"namespace\": \"videos\", \"subject_id\": \"{{ print .Subject }}\", \"object\": \"test\", \"relation\": \"view\"}"
+        "payload": "{\"namespace\": \"videos\", \"subject_id\": \"{{ print .Subject }}\", \"object\": \"{{ printIndex .MatchContext.RegexpCaptureGroups 1 }}\", \"relation\": \"view\"}"
       }
     },
     "mutators": [
