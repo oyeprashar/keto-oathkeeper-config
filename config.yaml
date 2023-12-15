@@ -7,8 +7,8 @@ access_rules:
   repositories:
     - file:///etc/oathkeeper/rules.json
 authenticators:
-#  anonymous:
-#    enabled: true
+  #  anonymous:
+  #    enabled: true
   oauth2_introspection:
     # Set enabled to true if the authenticator should be enabled and false to disable the authenticator. Defaults to false.
     enabled: true
@@ -18,7 +18,6 @@ authenticators:
       cache:
         enabled: true
         ttl: 60s
-
 authorizers:
   remote_json:
     # Set enabled to "true" to enable the authenticator, and "false" to disable the authenticator. Defaults to "false".
@@ -27,10 +26,10 @@ authorizers:
       remote: http://host.docker.internal:4466/relation-tuples/check
       payload: |
         {
-          "namespace" : "videos",
-          "object" : "/logs",
-          "relation" : "view",
-          "subject_id": "c6397b7e-770d-48a5-9580-7af23fc152dc"
+            "namespace": "...",
+            "subject_id": "...",
+            "object": "...",
+            "relation": "..."
         }
 mutators:
   noop:
@@ -42,6 +41,6 @@ mutators:
       headers:
         X-User: "{{ print .Subject }}"
 log:
-  level: debug
-#  pretty: true # Enable pretty printing for logs (optional)
+  level: trace
+  #  pretty: true # Enable pretty printing for logs (optional)
   format: text # Log format (optional)

@@ -6,7 +6,7 @@
       "url": "http://host.docker.internal:3334"
     },
     "match": {
-      "url": "http://<127.0.0.1|localhost>:4455/test",
+      "url": "http://<127.0.0.1|localhost>:4455/<.*>",
       "methods": [
         "GET"
       ]
@@ -16,11 +16,11 @@
         "handler": "oauth2_introspection"
       }
     ],
-
     "authorizer": {
       "handler": "remote_json",
       "config": {
-        "remote" : "http://host.docker.internal:4466/relation-tuples/check"
+        "remote" : "http://host.docker.internal:4466/relation-tuples/check",
+        "payload": "{\"namespace\": \"videos\", \"subject_id\": \"{{ print .Subject }}\", \"object\": \"test\", \"relation\": \"view\"}"
       }
     },
     "mutators": [
